@@ -1,0 +1,23 @@
+<%- model_class = Todo -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+  <dd><%= @todo.description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:is_completed) %>:</strong></dt>
+  <dd><%= @todo.is_completed %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:target_date) %>:</strong></dt>
+  <dd><%= @todo.target_date %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              todos_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_todo_path(@todo), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              todo_path(@todo),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
